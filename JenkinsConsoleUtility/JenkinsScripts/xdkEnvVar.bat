@@ -1,0 +1,34 @@
+set DurangoXDK=C:\Program Files (x86)\Microsoft Durango XDK\
+set INCLUDE=C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\ucrt\inc;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\include\cppwinrt;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\VS2017\vc\include;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\VS2017\vc\platform\amd64;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\include\shared;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\include\um;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\include\winrt;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\VS\INCLUDE;
+
+set LIB=C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\ucrt\lib\amd64;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\VS2015\vc\lib\amd64;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\lib\amd64;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\VS\LIB\x64;
+
+set LIBPATH=C:\Program Files (x86)\Microsoft SDKs\Durango.180702\v8.0\references\CommonConfiguration\Neutral;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\VS\LIB\x64;
+
+set MSBuildInstallDir11=C:\Windows\Microsoft.NET\Framework\v4.0.30319\
+set MSBuildInstallDir15=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Amazon\cfn-bootstrap\;C:\dev\arcanist\arcanist\bin;C:\Program Files\7-Zip;C:\dev\apache-ant-1.10.1\bin;C:\dev\cocos2d-x-3.15.1\tools\cocos2d-console\bin;C:\dev\flex_sdk_4.6\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\bin;C:\Program Files\Git\cmd;C:\Program Files\TortoiseHg;C:\Program Files (x86)\Java\jdk1.8.0_171\bin;C:\dev\LuaDist\bin;C:\dev\apache-maven-3.5.3\bin;C:\dev\nuget;C:\dev\php;C:\dev\Python27;C:\dev\Python27\Scripts;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\TortoiseHg\;C:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\GitExtensions\;C:\dev\android-sdk-windows\build-tools;C:\dev\android-sdk-windows\platform-tools;C:\dev\android-sdk-windows\tools;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Roaming\Python\Scripts;C:\Users\Administrator\.dotnet\tools
+
+set PIXPath=C:\Program Files\Microsoft PIX\July 2018 QFE 2\
+set Platform=Durango
+set PROCESSOR_ARCHITECTURE=AMD64
+set VisualStudioVersion=15.0
+set VSInstallDir=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\
+set VSWHERELOCATION="C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
+set XboxOneExtensionSdkBuild=C:\Program Files (x86)\Microsoft SDKs\Durango.180702\v8.0\
+set XboxOneExtensionSDKLatest=C:\Program Files (x86)\Microsoft SDKs\Durango.180702\v8.0\
+set XboxOneXDKBuild=C:\Program Files (x86)\Microsoft Durango XDK\180702\
+set XboxOneXDKEditionVersionFriendlyName=July 2018 QFE 2
+set XboxOneXDKLatest=C:\Program Files (x86)\Microsoft Durango XDK\180702\
+set XboxOneXDKVSIXID=b4322cb0-49f2-5366-3968-0d76afc69dd7
+set XDKEDITION=180702
+set XDKVSPRERELEASE=-prerelease
+
+set Path=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Amazon\cfn-bootstrap\;C:\dev\arcanist\arcanist\bin;C:\Program Files\7-Zip;C:\dev\apache-ant-1.10.1\bin;C:\dev\cocos2d-x-3.15.1\tools\cocos2d-console\bin;C:\dev\flex_sdk_4.6\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\bin;C:\Program Files\Git\cmd;C:\Program Files\TortoiseHg;C:\Program Files (x86)\Java\jdk1.8.0_171\bin;C:\dev\LuaDist\bin;C:\dev\apache-maven-3.5.3\bin;C:\dev\nuget;C:\dev\php;C:\dev\Python27;C:\dev\Python27\Scripts;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\TortoiseHg\;C:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\GitExtensions\;C:\dev\android-sdk-windows\build-tools;C:\dev\android-sdk-windows\platform-tools;C:\dev\android-sdk-windows\tools;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Roaming\Python\Scripts;C:\Users\Administrator\.dotnet\tools;C:\Program Files (x86)\Microsoft Durango XDK\180702\xdk\fxc\amd64;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\VS\bin\Hostx64\x64;C:\Program Files\Microsoft PIX\July 2018 QFE 2\;C:\Program Files (x86)\Microsoft Durango XDK\180702\bin;C:\Program Files (x86)\Microsoft Durango XDK\bin;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\vcpackages\;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Team Tools\Performance Tools\x64;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Team Tools\Performance Tools;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Amazon\cfn-bootstrap\;C:\dev\arcanist\arcanist\bin;C:\Program Files\7-Zip;C:\dev\apache-ant-1.10.1\bin;C:\dev\cocos2d-x-3.15.1\tools\cocos2d-console\bin;C:\dev\flex_sdk_4.6\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\bin;C:\Program Files\Git\cmd;C:\Program Files\TortoiseHg;C:\Program Files (x86)\Java\jdk1.8.0_171\bin;C:\dev\LuaDist\bin;C:\dev\apache-maven-3.5.3\bin;C:\dev\nuget;C:\dev\php;C:\dev\Python27;C:\dev\Python27\Scripts;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\TortoiseHg\;C:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\GitExtensions\;C:\dev\android-sdk-windows\build-tools;C:\dev\android-sdk-windows\platform-tools;C:\dev\android-sdk-windows\tools;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Roaming\Python\Scripts;C:\Users\Administrator\.dotnet\tools
+
+set DPLATFORM=VS2017
+set DTARGETVS=Visual Studio 2017
+set DTARGETVSVER=15.0
+set FrameworkDir=C:\Windows\Microsoft.NET\Framework\
+set FrameworkVersion=v4.0.30319
+set CommandPromptType=Native
+set CommonProgramFiles=C:\Program Files\Common Files
