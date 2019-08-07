@@ -149,6 +149,8 @@ function getModelPropertyDef(property, datatype) {
         return capitalizeFirstLetter(property.name) + " []" + basicType + " `json:\""+property.name+",omitempty\"`";
     else if (property.collection && property.collection === "map")
         return capitalizeFirstLetter(property.name) + " map[string]" + basicType + " `json:\""+property.name+",omitempty\"`";
+    else if (property.isclass && property.optional)
+        return capitalizeFirstLetter(property.name) + " *" + getPropertyGoType(property, datatype) + " `json:\"" + property.name + ",omitempty\"`";
     else if (property.collection)
         throw "Unknown collection type: " + property.collection + " for " + property.name + " in " + datatype.name;
 
