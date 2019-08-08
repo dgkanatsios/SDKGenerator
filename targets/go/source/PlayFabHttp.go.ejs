@@ -15,6 +15,7 @@ import (
 	"time"
 )
 
+// PlayFabResponse contains all fields returned from a PlayFab request
 type PlayFabResponse struct {
 	Code         int                    `json:"code"`
 	Status       string                 `json:"status"`
@@ -27,9 +28,9 @@ type PlayFabResponse struct {
 
 // CustomError contains data about an error during HTTP operation
 type CustomError struct {
-	msg      string
-	Code     ErrorCode
-	Response PlayFabResponse
+	msg       string
+	Code      ErrorCode
+	Response *PlayFabResponse
 }
 
 func (p *CustomError) Error() string { return p.msg }
@@ -40,7 +41,7 @@ func NewCustomError(msg string, code ErrorCode) *CustomError {
 }
 
 // NewCustomErrorWithResponse returns a new CustomError with a message, error code, and PlayFab response
-func NewCustomErrorWithResponse(msg string, code ErrorCode, response PlayFabResponse) *CustomError {
+func NewCustomErrorWithResponse(msg string, code ErrorCode, response *PlayFabResponse) *CustomError {
 	return &CustomError{msg: msg, Code: code, Response: response}
 }
 
@@ -203,7 +204,7 @@ func Request(p *Settings, b []byte, apiPath string, authKey string, authValue st
 		if result.Status != "" {
 			errorString = fmt.Sprintf("%s and status %s", errorString, result.Status)
 		}
-		return nil, NewCustomErrorWithResponse(errorString, ErrorDoRequest, result)
+		return nil, NewCustomErrorWithResponse(errorString, ErrorDoRequest, &result)
 	}
 
 	return result.Data, nil
