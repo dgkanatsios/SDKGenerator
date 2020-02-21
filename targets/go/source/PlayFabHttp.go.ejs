@@ -109,11 +109,11 @@ type Settings struct {
 // Requires a valid titleId
 func NewSettingsWithDefaultOptions(titleId string) *Settings {
 	return &Settings{
-		VersionString:            "GoSdk-",
-		RequestGetParams:         map[string]string{"sdk": ""},
+		VersionString:            "GoSdk-<%- sdkVersion %>",
+		RequestGetParams:         map[string]string{"sdk": "<%- sdkVersion %>"},
 		ProductionEnvironmentURL: ".playfabapi.com", // This is only for customers running a private cluster.  Generally you shouldn't touch this
 		EnableCompression:        false,
-		VerticalName:             "", // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
+		VerticalName:             "<%- getVerticalNameDefault() %>", // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
 		TitleId:                  titleId,
 		DisableSsl:               false,
 		DisableAdvertising:       false,
