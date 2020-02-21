@@ -21,6 +21,7 @@ type playFabResponse struct {
 	RemoteErrMsg      string                 `json:"errorMessage"` // Description for the PlayFab errorCode
 	RemoteErrCode     int                    `json:"errorCode"`    // Numerical PlayFab error code
 	RemoteErrCodeText string                 `json:"error"`        // Text Playfab error code
+	RemoteErrDetails  map[string][]string    `json:"errorDetails"`
 	Data              map[string]interface{} `json:"data"`
 }
 
@@ -37,6 +38,7 @@ type CustomRemoteError struct {
 	RemoteErrCode     int       // Numerical PlayFab error code
 	RemoteErrCodeText string    // Text Playfab error code
 	RemoteErrMsg      string    // Description for the PlayFab errorCode
+	RemoteErrDetails  map[string][]string
 }
 
 func (p *CustomError) Error() string {
@@ -44,13 +46,14 @@ func (p *CustomError) Error() string {
 }
 
 func (p *CustomRemoteError) Error() string {
-	return fmt.Sprintf("ErrCode:%v RemoteStatus:%v RemoteErrCode:%v RemoteErrorMsg:%v RemoteErrCodeText:%v",
-		p.ErrCode, p.RemoteStatus, p.RemoteErrCode, p.RemoteErrMsg, p.RemoteErrCodeText)
+	return fmt.Sprintf("ErrCode:%v RemoteStatus:%v RemoteErrCode:%v RemoteErrorMsg:%v RemoteErrCodeText:%v RemoteErrDetails: %v",
+		p.ErrCode, p.RemoteStatus, p.RemoteErrCode, p.RemoteErrMsg, p.RemoteErrCodeText, p.RemoteErrDetails)
 }
 
 // NewCustomRemoteError returns a new CustomError with a message and an error code
 func NewCustomRemoteError(res *playFabResponse, errCode ErrorCode) *CustomRemoteError {
-	return &CustomRemoteError{ErrCode: errCode, RemoteErrMsg: res.RemoteErrMsg, RemoteErrCode: res.RemoteErrCode, RemoteErrCodeText: res.RemoteErrCodeText}
+	return &CustomRemoteError{ErrCode: errCode, RemoteErrMsg: res.RemoteErrMsg, RemoteErrCode: res.RemoteErrCode,
+		RemoteErrCodeText: res.RemoteErrCodeText, RemoteErrDetails: res.RemoteErrDetails}
 }
 
 // NewCustomError returns a new CustomError with a message and an error code
