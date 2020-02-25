@@ -1,4 +1,4 @@
-var path = require("path");
+const path = require("path");
 
 // Making resharper less noisy - These are defined in Generate.js
 if (typeof (generateApiSummaryLines) === "undefined") generateApiSummaryLines = function () { };
@@ -9,21 +9,21 @@ exports.makeCombinedAPI = function (apis, sourceDir, apiOutputDir) {
     apiOutputDir = path.join(apiOutputDir, "sdk");
     console.log("Generating Combined api from: " + sourceDir + " to: " + apiOutputDir);
 
-    var locals = {
+    let locals = {
         sdkVersion: sdkGlobals.sdkVersion,
         getVerticalNameDefault: getVerticalNameDefault
     };
 
     templatizeTree(locals, path.resolve(sourceDir, "source"), apiOutputDir);
     makeDatatypes(apis, sourceDir, apiOutputDir);
-    for (var a = 0; a < apis.length; a++) {
+    for (let a = 0; a < apis.length; a++) {
         outputPath = path.join(apiOutputDir, apis[a].name.toLowerCase())
         makeApi(apis[a], sourceDir, outputPath);
     }
 }
 
 function makeApi(api, sourceDir, apiOutputDir) {
-    var locals = {
+    let locals = {
         api: api,
         sdkVersion: sdkGlobals.sdkVersion,
         generateApiSummary: generateApiSummary,
@@ -35,7 +35,7 @@ function makeApi(api, sourceDir, apiOutputDir) {
         getVerticalNameDefault: getVerticalNameDefault
     };
 
-    var apiTemplate = getCompiledTemplate(path.resolve(sourceDir, "templates/Api.go.ejs"));
+    let apiTemplate = getCompiledTemplate(path.resolve(sourceDir, "templates/Api.go.ejs"));
     writeFile(path.resolve(apiOutputDir, "PlayFab" + api.name + "Api.go"), apiTemplate(locals));
 }
 
@@ -80,7 +80,7 @@ function getRequestActions(tabbing, apiCall) {
 }
 
 function generateApiSummary(tabbing, apiElement, summaryParam, extraLines) {
-    var lines = generateApiSummaryLines(apiElement, summaryParam, extraLines);
+    let lines = generateApiSummaryLines(apiElement, summaryParam, extraLines);
     lines[0] = "// " + apiElement.name + " " + lowercaseFirstLetter(lines[0])
     output = lines.join("\n" + "// ") + "\n"
     return output;
@@ -104,7 +104,7 @@ function getAuthInputParams(apiCall) {
 
 function getCustomApiSignatures(api, sourceDir, apiCall) {
     if (apiCall.url === "/Authentication/GetEntityToken") {
-        var locals = {
+        let locals = {
             api: api,
             apiCall: apiCall,
             generateApiSummary: generateApiSummary,
@@ -112,20 +112,20 @@ function getCustomApiSignatures(api, sourceDir, apiCall) {
             getCurlAuthParams: getCurlAuthParams,
             getRequestActions: getRequestActions,
         };
-        var customTemplate = getCompiledTemplate(path.resolve(sourceDir, "templates/GetEntityTokenExtra.go.ejs"));
+        let customTemplate = getCompiledTemplate(path.resolve(sourceDir, "templates/GetEntityTokenExtra.go.ejs"));
         return customTemplate(locals);
     }
     return "";
 }
 
 function makeDatatypes(apis, sourceDir, apiOutputDir) {
-    var templateDir = path.resolve(sourceDir, "templates");
-    var modelTemplate = getCompiledTemplate(path.resolve(templateDir, "Model.go.ejs"));
-    var modelsTemplate = getCompiledTemplate(path.resolve(templateDir, "Models.go.ejs"));
-    var enumTemplate = getCompiledTemplate(path.resolve(templateDir, "Enum.go.ejs"));
+    let templateDir = path.resolve(sourceDir, "templates");
+    let modelTemplate = getCompiledTemplate(path.resolve(templateDir, "Model.go.ejs"));
+    let modelsTemplate = getCompiledTemplate(path.resolve(templateDir, "Models.go.ejs"));
+    let enumTemplate = getCompiledTemplate(path.resolve(templateDir, "Enum.go.ejs"));
 
-    var makeDatatype = function (datatype, api) {
-        var locals = {
+    let makeDatatype = function (datatype, api) {
+        let locals = {
             api: api,
             datatype: datatype,
             getPropertyDef: getModelPropertyDef,
@@ -134,8 +134,8 @@ function makeDatatypes(apis, sourceDir, apiOutputDir) {
         return datatype.isenum ? enumTemplate(locals) : modelTemplate(locals);
     };
 
-    for (var a = 0; a < apis.length; a++) {
-        var locals = {
+    for (let a = 0; a < apis.length; a++) {
+        let locals = {
             api: apis[a],
             makeDatatype: makeDatatype
         };
@@ -144,7 +144,7 @@ function makeDatatypes(apis, sourceDir, apiOutputDir) {
 }
 
 function getModelPropertyDef(property, datatype) {
-    var basicType = getPropertyGoType(property, datatype);
+    let basicType = getPropertyGoType(property, datatype);
     if (property.collection && property.collection === "array")
         return capitalizeFirstLetter(property.name) + " []" + basicType + " `json:\""+property.name+",omitempty\"`";
     else if (property.collection && property.collection === "map")
@@ -152,11 +152,16 @@ function getModelPropertyDef(property, datatype) {
     else if (property.collection)
         throw "Unknown collection type: " + property.collection + " for " + property.name + " in " + datatype.name;
 
-    return  capitalizeFirstLetter(property.name) + " "  + getPropertyGoType(property, datatype) + " `json:\""+property.name+",omitempty\"`";
+    let pointer = " ";
+    if(property.isclass){
+        pointer = "* "
+    }
+
+    return  capitalizeFirstLetter(property.name) + pointer + getPropertyGoType(property, datatype) + " `json:\""+property.name+",omitempty\"`";
 }
 
 function getPropertyGoType(property, datatype) {
-    var optional = "";
+    const optional = "";
 
     if (property.actualtype === "String")
         return "string";
