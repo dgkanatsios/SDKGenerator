@@ -13,4 +13,7 @@ set targetFolder=c:\projects\playfabsdk-go
 rmdir %targetFolder%\sdk /s /q
 move ..\..\sdks\GoSDK\sdk %targetFolder%
 
+cd %targetFolder%/sdk
+go mod init github.com/dgkanatsios/playfabsdk-go/sdk
+
 endlocal
