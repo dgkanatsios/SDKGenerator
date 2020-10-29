@@ -68,8 +68,8 @@ function getRequestActions(tabbing, apiCall) {
         return "    if postData != nil && postData.TitleId == \"\" { \n " + "    " + "   postData.TitleId = settings.TitleId \n" + "    }\n";
     if (apiCall.result === "AttributeInstallResult")
         return "    " + "// Modify advertisingIdType:  Prevents us from sending the id multiple times, and allows automated tests to determine id was sent successfully\n"
-        + "    " + "settings.AdvertisingIdType = settings.AdvertisingIdType + \"_Successful\"\n"
-        + "    " + "if clientSessionTicket == \"\" {\n        return nil, playfab.NewCustomError(\"clientSessionTicket should not be an empty string\", playfab.ErrorGeneric)\n    }";
+            + "    " + "settings.AdvertisingIdType = settings.AdvertisingIdType + \"_Successful\"\n"
+            + "    " + "if clientSessionTicket == \"\" {\n        return nil, playfab.NewCustomError(\"clientSessionTicket should not be an empty string\", playfab.ErrorGeneric)\n    }";
     if (apiCall.auth === "EntityToken")
         return "    " + "if entityToken == \"\" {\n        return nil, playfab.NewCustomError(\"entityToken should not be an empty string\", playfab.ErrorGeneric)\n    }";
     if (apiCall.auth === "SessionTicket")
@@ -146,20 +146,30 @@ function makeDatatypes(apis, sourceDir, apiOutputDir) {
 function getModelPropertyDef(property, datatype) {
     let basicType = getPropertyGoType(property, datatype);
     if (property.collection && property.collection === "array")
-        return capitalizeFirstLetter(property.name) + " []" + basicType + " `json:\""+property.name+",omitempty\"`";
+        return capitalizeFirstLetter(property.name) + " []" + basicType + " `json:\"" + property.name + ",omitempty\"`";
     else if (property.collection && property.collection === "map")
-        return capitalizeFirstLetter(property.name) + " map[string]" + basicType + " `json:\""+property.name+",omitempty\"`";
+        return capitalizeFirstLetter(property.name) + " map[string]" + basicType + " `json:\"" + property.name + ",omitempty\"`";
     else if (property.isclass && property.optional)
         return capitalizeFirstLetter(property.name) + " *" + getPropertyGoType(property, datatype) + " `json:\"" + property.name + ",omitempty\"`";
     else if (property.collection)
         throw "Unknown collection type: " + property.collection + " for " + property.name + " in " + datatype.name;
 
     let pointer = " ";
-    if(property.isclass){
+    if (property.isclass) {
         pointer = "* "
     }
 
-    return  capitalizeFirstLetter(property.name) + pointer + getPropertyGoType(property, datatype) + " `json:\""+property.name+",omitempty\"`";
+    var type = getPropertyGoType(property, datatype);
+    if (type == "bool"){
+        // don't include omitempty for boolean fields
+        // https://github.com/dgkanatsios/playfabsdk-go/issues/1
+        return capitalizeFirstLetter(property.name) + pointer + getPropertyGoType(property, datatype) + " `json:\"" + property.name + "\"`";
+    }
+    else {
+        return capitalizeFirstLetter(property.name) + pointer + getPropertyGoType(property, datatype) + " `json:\""+property.name+",omitempty\"`";
+    }
+
+    
 }
 
 function getPropertyGoType(property, datatype) {
@@ -196,7 +206,6 @@ function getPropertyGoType(property, datatype) {
     throw "Unknown property type: " + property.actualtype + " for " + property.name + " in " + datatype.name;
 }
 
-function capitalizeFirstLetter(string) 
-{
+function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
